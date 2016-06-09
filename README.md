@@ -6,7 +6,7 @@ Sample code to create Most Populous Year
 
 Block Based Function that creates Person objects for us.
 
-- (void) parseJSONResponse:(void(^)(NSMutableArray* arrayWithPeople))jsonHandler
+    - (void) parseJSONResponse:(void(^)(NSMutableArray* arrayWithPeople))jsonHandler
 
 **Creating Person Manually**
 

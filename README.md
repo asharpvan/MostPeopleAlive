@@ -1,7 +1,27 @@
 # MostPeopleAlive
 
 
-Sample code to create Most Populous Year
+#Sample code to find Most Populous Year between 1900 - 2000.
+
+
+#Update
+_________
+
+> Added code to return multiple years, in case highest population is found to be across multiple years
+
+
+    NSLog(@"Years of Highest Population :\n");
+    NSIndexSet *indexes =[arrayOfPopulation indexesOfObjectsPassingTest:^BOOL(NSNumber *obj, NSUInteger idx, BOOL       * _Nonnull stop) {
+
+        return [highestPopulation isEqual:obj];
+    }];
+
+    [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"    %ld",idx+1900);
+    }];
+
+_________
+
 
 
 Block Based Function that creates Person objects for us.
@@ -83,9 +103,3 @@ Block Based Function that creates Person objects for us.
 > Above mentioned is executed within the block parseJSONResponse which
 > ensures that we already have all the instances of Person Class before
 > we start working on them.
-
-
-
-
-
-

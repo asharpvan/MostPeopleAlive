@@ -63,15 +63,27 @@
             }
             
             NSLog(@"\nPopulation Dictionary : %@",dictionaryOfPopulation);
-            NSLog(@"\nPopulation Array : %@",arrayOfPopulation);
+//            NSLog(@"\nPopulation Array : %@",arrayOfPopulation);
             
             //Get the highest Number(population) in the array that keeps track of population.
             NSNumber *highestPopulation = [arrayOfPopulation valueForKeyPath:@"@max.intValue"];
             NSLog(@"highestPopulation : %@",highestPopulation);
 
             //Once we have highest population we find the index. Now that we know our loop starts from 1900. Adding the same to the index recieved will give us the most populous year.
-            NSUInteger index = [arrayOfPopulation indexOfObject:highestPopulation];
-            NSLog(@"Year of Highest Population : %ld",index + 1900);
+//            NSUInteger index = [arrayOfPopulation indexOfObject:highestPopulation];
+//            NSLog(@"Year of Highest Population : %ld",index + 1900);
+            
+           
+            //Update Added code to return more than one year, if highest population is same across multiple years
+            NSLog(@"Years of Highest Population :\n");
+            NSIndexSet *indexes =[arrayOfPopulation indexesOfObjectsPassingTest:^BOOL(NSNumber *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                return [highestPopulation isEqual:obj];
+            }];
+            
+            [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+                NSLog(@"    %ld",idx+1900);
+            }];
         }];
     }
     
@@ -104,7 +116,7 @@
      *totalNumberOfPeopleReturnedByJson.
      */
     
-    int totalNumberOfPeopleReturnedByJson = 10;
+    int totalNumberOfPeopleReturnedByJson = 1000;
     
     for (int i = 0; i < totalNumberOfPeopleReturnedByJson; i++) {
         Person *person = [[Person alloc]init];
